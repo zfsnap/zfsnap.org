@@ -1,0 +1,115 @@
+/* Font Licensed under Apache 2.0 */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(/theme/fonts/opensanslight.woff) format('woff');
+}
+
+/****************************
+ * element overrides
+ ****************************/
+a {
+  color: #BE642E;
+}
+a:hover {
+  color: #BE642E;
+}
+
+body {
+  color: #BFBFBF;
+  background-color: #272727;
+  font-family: "Open Sans";
+  line-height: 1.5;
+  margin: auto;
+  max-width: 920px;
+  min-width: 200px;
+  width: 96%;
+  padding: 2px;
+  padding-top: 5em;
+}
+
+h1 {
+  font-size: 3em;
+}
+h1, h2, h3 {
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 0;
+}
+
+/****************************
+ * rules
+ ****************************/
+#aside {
+  display: inline-block;
+  min-width: 200px;
+  padding-right: 4.5%;
+  text-align: right;
+  vertical-align: top;
+  width: 25%;
+}
+#aside a {
+  text-decoration: none;
+}
+
+#footer {
+  border-top: 1px solid #BFBFBF;
+  font-size: 0.8em;
+  margin-left: 30%;
+  padding: 0em 0;
+  text-align: right;
+  width: 70%;
+}
+
+#main {
+  display: inline-block;
+  font-size: 1.3em;
+  width: 70%;
+}
+#main p:first-child {
+  margin-top: 0;
+}
+
+#nav {
+  padding:0;
+}
+#nav a {
+  color: #BFBFBF;
+}
+#nav a:hover {
+  color: #BE642E;
+}
+#nav li {
+  direction: rtl; /* to get bullets on right side */
+  list-style-position: inside;
+  line-height: 2.0em;
+}
+
+/****************************
+ * small screen support
+ ****************************/
+@media screen and (max-width: 865px) {
+  body {
+    padding-top: 2em;
+  }
+  #aside {
+    border-top: 1px solid #BFBFBF;
+    border-bottom: 1px solid #BFBFBF;
+    text-align: left;
+    padding: 10px 0 0 0;
+  }
+  #aside, #footer, #main {
+    margin: 0;
+    width: 100%;
+  }
+  #main p:first-child {
+    margin-top: 1em;
+  }
+  #nav li {
+    list-style: none;
+  }
+  footer {
+    margin-left: 0;
+  }
+}
