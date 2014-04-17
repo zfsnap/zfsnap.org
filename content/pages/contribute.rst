@@ -5,17 +5,19 @@ contribute
 Want to contribute?
 *******************
 
-*Awesome.* Development primarily takes place on `github`_. Fork the repo,
+*Awesome.* Development primarily takes place on `GitHub`_. Fork the repo,
 create a branch, hack in your feature, and send us a Pull Request.
 
 We ask that you take the time to read the following developer notes so that
 your PR is more likely to be accepted.
 
+If you found a bug, please report it via our `issue tracker on GitHub`_.
+
 Developer Notes
 ***************
 
-zfsnap is written in sh. Not bash, ksh, or anything else. Good old, simple sh;
-it's surprisingly powerful — and ultra-portable.
+zfsnap is written in sh, avoiding bash-, ksh-, etc-specific features. Good
+old, simple sh. Though don't despair, it's surprisingly powerful.
 
 Portability
 ===========
@@ -27,16 +29,7 @@ are rare.
 Thankfully, ZFS is relatively modern (it was first introduced in Solaris 10),
 so the shells supported are comparatively featureful and complete.
 
-References
-==========
-
-Man pages are usually the best source of information when it comes to features
-and portability. sh's man page for any given OS is usually available
-*somewhere* on the internet.
-
-The book "Beginning Portable Shell Scripting From Novice to Professional" is
-also a great reference. It focuses on portability across Bourne and Bourne-like
-shells, and has proven to be invaluable at times.
+OS checks are frowned upon; please keep the code platform agnostic.
 
 Performance
 ===========
@@ -45,7 +38,7 @@ As a rule, avoid calling external programs (date, grep, sed, etc). Adding a
 call or two per run isn't a problem, but adding even *one* call per snapshot
 checked can easily cause major slowdowns. Remember, zfsnap runs on systems with
 100,000+ snapshots to check. sh's substring support is powerful enough that sed
-and grep are rarely (if ever) needed for our use-case.
+and grep are rarely (if ever) needed in our use-case.
 
 Also avoid spawning subshells, which are almost as bad as calling external
 programs. $(), \`\`, and | each invoke subshells; if you need to return a value
@@ -54,7 +47,19 @@ from a function, use the global variable RETVAL.
 Tests
 =====
 
-If submitting a feature, it is infinitely more likely to be accepted if it
-comes with tests.
+When submitting a new feature, it is infinitely more likely to be accepted if
+it comes with tests.
 
-.. _github: https://github.com/zfsnap/zfsnap
+References
+==========
+
+Man pages are usually the best source of information when it comes to features
+and portability. sh's man page for any given OS is usually available
+*somewhere* on the internet.
+
+The book "Beginning Portable Shell Scripting From Novice to Professional" is
+also a great reference, and has proven to be invaluable at times. It focuses on
+portability across Bourne and Bourne-like shells.
+
+.. _GitHub: https://github.com/zfsnap/zfsnap
+.. _issue tracker on GitHub: https://github.com/zfsnap/zfsnap/issues
