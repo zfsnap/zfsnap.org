@@ -1,6 +1,5 @@
 contribute
-#########################
-:url:
+##########
 :save_as: contribute.html
 
 Want to contribute?

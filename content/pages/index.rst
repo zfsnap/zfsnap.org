@@ -1,6 +1,5 @@
 zfsnap
-#########################
-:url:
+######
 :save_as: index.html
 
 zfsnap is a free and open source script designed to make rolling ZFS snapshots
