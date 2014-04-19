@@ -3,7 +3,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(/theme/fonts/opensanslight.woff) format('woff');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(/fonts/opensanslight.woff) format('woff');
 }
 
 /****************************
