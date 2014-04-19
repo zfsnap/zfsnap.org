@@ -20,7 +20,9 @@ html:
 
 	for f in $(FRAGMENTS); do \
 		FILE_NAME=$${f##*/} ;\
-		./build_html "$$f" 'happy'  > $(OUTPUTDIR)/$${FILE_NAME%.fragment}.html ;\
+		TITLE="$${FILE_NAME%.fragment} - zfsnap" ;\
+		[ "$${FILE_NAME%.fragment}" != 'index' ] || TITLE="zfsnap" ;\
+		./build_html "$$f" "$$TITLE"  > $(OUTPUTDIR)/$${FILE_NAME%.fragment}.html ;\
 	done
 
 clean:
