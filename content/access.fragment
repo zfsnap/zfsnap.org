@@ -1,13 +1,10 @@
-Get zfsnap
-##########
-:save_as: access.html
+<h1>Get zfsnap</h1>
 
-zfsnap is already packaged for many OSs and distributions — FreeBSD and Debian
-(Jessie) in particular. We always recommend that you check your package manager
-first.
+<p>zfsnap is already packaged for many OSs and distributions &mdash; FreeBSD
+   and Debian (Jessie) in particular. We always recommend that you check your
+   package manager first.</p>
 
-If zfsnap isn't packaged for your OS yet, or you want the bleeding-edge code,
-then you can easily get it from our `respository on GitHub`_.
-
-.. _respository on GitHub: https://github.com/zfsnap/zfsnap
+<p>If zfsnap isn't packaged for your OS yet, or you want the bleeding-edge
+   code, then you can easily get it from our <a href="https://github.com/zfsnap/zfsnap">
+   repository on GitHub</a>.</p>
 
