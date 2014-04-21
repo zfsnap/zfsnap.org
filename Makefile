@@ -13,6 +13,7 @@ help:
 	@echo '   make clean                       remove the generated files         '
 	@echo '   make html                        (re)generate the web site          '
 	@echo '   make manpage                     generate html from manpage         '
+	@echo '   make publish                     copy output/ to master branch      '
 	@echo '                                                                       '
 
 all: html manpage
@@ -51,4 +52,11 @@ manpage: mandoc_check
 	# default mandoc CSS
 	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css
 
-.PHONY: all clean help html mandoc_check manpage
+publish: all
+	git checkout master
+	git add $(OUTPUTDIR)/*
+	git mv -fkv $(OUTPUTDIR)/* ./
+	git commit -m "Website update"
+	git checkout site-code
+
+.PHONY: all clean help html mandoc_check manpage publish
