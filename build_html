@@ -40,7 +40,8 @@ printf "</div><!-- close #main -->\n"
 # footer
 printf "
 <div id='footer'>
-  <p>This website's code is hosted on GitHub.<br />
+  <p>This website's code is <a href='https://github.com/zfsnap/zfsnap.github.io'>
+     hosted on GitHub</a>.<br />
      Patches and suggestions are welcome.</p>
 </div><!-- close #footer -->
 </body>
