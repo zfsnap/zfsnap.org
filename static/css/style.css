@@ -16,11 +16,8 @@
 /****************************
  * element overrides
  ****************************/
-a {
-  color: #BE642E;
-}
-a:hover {
-  color: #BE642E;
+a, a:hover {
+  color: #DE942E;
 }
 
 body {
@@ -89,7 +86,7 @@ h1, h2, h3 {
   color: #BFBFBF;
 }
 #nav a:hover {
-  color: #BE642E;
+  color: #DE942E;
 }
 #nav li {
   direction: rtl; /* to get bullets on right side */
