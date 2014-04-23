@@ -5,6 +5,13 @@
   font-weight: 300;
   src: local('Open Sans Light'), local('OpenSans-Light'), url(/fonts/opensanslight.woff) format('woff');
 }
+/* Font Licensed under Apache 2.0 */
+@font-face {
+  font-family: 'Roboto Slab Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Slab Light'), local('RobotoSlab-Light'), url(/fonts/robotoslablight.woff) format('woff');
+}
 
 /****************************
  * element overrides
@@ -37,6 +44,7 @@ h1 {
   font-size: 3em;
 }
 h1, h2, h3 {
+  font-family: "Roboto Slab Light";
   letter-spacing: -0.025em;
   line-height: 1;
   margin: 0;
