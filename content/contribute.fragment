@@ -2,11 +2,11 @@
 <p><em>Awesome.</em> Development primarily takes place on <a href="https://github.com/zfsnap/zfsnap">
    GitHub</a>. Fork the repo, create a branch, hack in your feature, and send
    us a Pull Request.</p>
-<p>We ask that you take the time to read the following developer notes so that
-   your PR is more likely to be accepted.</p>
 <p>If you have any questions just email our mailing list (zfsnap@librelist.com).</p>
 <p>If you found a bug, please report it via our <a href="https://github.com/zfsnap/zfsnap/issues">
    issue tracker on GitHub</a>.</p>
+<p>We ask that you take the time to read the following developer notes so that
+   your PR is more likely to be accepted.</p>
 
 <h2>Developer Notes</h2>
 <p>zfsnap is written in sh, avoiding bash-, ksh-, etc-specific features. Good
@@ -27,12 +27,13 @@
    systems with 100,000+ snapshots to check. sh's substring support is powerful
    enough that sed and grep are rarely (if ever) needed in our use-case.</p>
 <p>Also avoid spawning subshells, which are almost as bad as calling external
-   programs. $(), \`\`, and | each invoke subshells; if you need to return a
-   value from a function, use the global variable RETVAL.</p>
+   programs. <code>$()</code>, <code>``</code>, and <code>|</code> each invoke
+   subshells; if you need to return a value from a function, use the global
+   variable <code>RETVAL</code>.</p>
 
 <h3>Tests</h3>
-<p>When submitting a new feature, it is infinitely more likely to be accepted
-   if it comes with tests.</p>
+<p>When submitting a patch, it is infinitely more likely to be accepted if it
+   comes with tests.</p>
 
 <h3>References</h3>
 <p>Man pages are usually the best source of information when it comes to
