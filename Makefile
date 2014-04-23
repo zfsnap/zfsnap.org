@@ -52,7 +52,7 @@ manpage: mandoc_check
 	# default mandoc CSS
 	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css
 
-publish: all
+publish: html
 	git checkout master
 	git add $(OUTPUTDIR)/*
 	git mv -fkv $(OUTPUTDIR)/* ./
