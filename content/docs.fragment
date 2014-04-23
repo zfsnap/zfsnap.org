@@ -1,5 +1,53 @@
-<h1>Documentation</h1>
-<p>The most up-to-date documentation is always the <a href="zfsnap_manpage.html">
-   zfsnap manpage</a>.</p>
-<p>The rest of this page is mean to provide practical, real-world examples.</p>
+<h1>resources</h1>
+<p>The most up-to-date and accurate documentation is always the
+   <a href="zfsnap_manpage.html">zfsnap manpage</a>.</p>
+<p>If you have any questions, users and developers are welcome on our
+   mailing list (zfsnap@librelist.com).</p>
+
+<h2>Examples</h2>
+<p>A word of warning: By default, zfsnap does not prompt or ask you to act.
+   Thus, we highly recommend to <strong>use the -n (dry-run) flag</strong> to
+   make sure the command does what you <em>think</em> it does.</p>
+
+<h3>Super Simple</h3>
+<p>Create a recursive snapshot on <code>pool/fs</code> with a TTL of 6 weeks.
+   Search recursively for any expired snapshots on <code>pool/fs</code> and
+   destroy them.
+   <pre><code>   # super simple
+   zfsnap snapshot -rv -a 6w pool/fs
+   zfsnap destroy -rv pool/fs</code></pre>
+</p>
+
+<h3>Two Server Tango</h3>
+<p>Here, two servers are used: a file server and a backup server. Snapshots
+   are taken recursively on <code>pool/fs</code> on the file server. They are
+   then sent to the backup server (currently done manually. A zfsnap solution
+   to this is in development) where snapshot are allowed to expire normally.
+   On the file server, all snapshots older than 3 days are destroyed (keeping
+   the last few days makes short-term file recovery quick and easy).
+<pre><code>   # two server tango
+   backup@filenode:~# zfsnap snapshot -rv -a 13m pool/fs
+   # zfs send [etc] | ssh backup@backupnode zfs receive [etc]
+   backup@filenode:~# zfsnap destroy -rv -F 3d pool/fs
+
+   backup@backupnode:~# zfsnap destroy -rv pool/fs</code></pre>
+</p>
+
+<h3>Prefix Promenade</h3>
+<p>Prefixes are quite useful for filtering. Let's try a more contrived example.
+  <ol>
+    <li>Recursively search for and delete expired snapshots on
+        <code>pool/fs</code> with either the prefix 'daily-' or 'weekly-'.</li>
+    <li>Recursively search for and delete snapshots on <code>pool/fs</code>
+        with either the prefix 'reboot-' or 'hourly-' that are older than 1
+        day.</li>
+    <li>Recursively search for and delete all snapshots on <code>pool/fs</code>
+        that have no prefix, regardless of their TTL.</li>
+  </ol>
+
+<pre><code>   # prefix promenade
+   zfsnap destroy -rv -p 'daily- weekly-' pool/fs \
+       -F 1d -p 'reboot- hourly-' pool/fs \
+       -PD pool/fs</code></pre>
+</p>
 
