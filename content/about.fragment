@@ -24,7 +24,7 @@
 <p>The prefix is optional (but is quite useful for filtering), Timestamp is the
    date and time it was created, and the TTL is the length of time until a
    snapshot is marked for deletion. For more info on the TTL format, see the
-   <a href='zfsnap_manpage.html'>zfsnap manpage</a>.</p>
+   <a href='zfsnap_manpage.html#x54544c2053594e544158'>zfsnap manpage</a>.</p>
 
 <h2>Is it open source?</h2>
 <p>zfsnap is distributed under the BSD-3-Clause open source license, and is
