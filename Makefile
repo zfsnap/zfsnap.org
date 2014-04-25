@@ -1,3 +1,6 @@
+# This file is licensed under the BSD-3-Clause license.
+# See the LICENSE file for more information.
+
 BASEDIR=$(shell pwd)
 CONTENTDIR=$(BASEDIR)/content
 STATICDIR=$(BASEDIR)/static
