@@ -65,7 +65,7 @@ manpage: mandoc_check
 publish: all
 	git checkout master
 	git add $(OUTPUTDIR)/*
-	git mv -fkv $(OUTPUTDIR)/* ./
+	for FILE in `find $(OUTPUTDIR)/ -type f`; do git mv -fkv $${FILE} $${FILE#$(OUTPUTDIR)/} ; done
 	git commit -m "Website update"
 	git checkout site-code
 
