@@ -1,9 +1,24 @@
-BASEDIR=./
-INPUTDIR=$(BASEDIR)/content
+BASEDIR=$(shell pwd)
+CONTENTDIR=$(BASEDIR)/content
 STATICDIR=$(BASEDIR)/static
 OUTPUTDIR=$(BASEDIR)/output
 
-FRAGMENTS=$(wildcard $(INPUTDIR)/*.fragment)
+FRAGMENTS:=$(shell find $(CONTENTDIR) -name '*.fragment')
+HTMLS=$(patsubst $(CONTENTDIR)/%,%,$(FRAGMENTS:.fragment=.html))
+
+.SUFFIXES: .html .fragment
+
+index.html: $(CONTENTDIR)/index.fragment
+	[ -d $(OUTPUTDIR) ] || mkdir $(OUTPUTDIR)
+	cat $(BASEDIR)/header.html | sed s/'{{ TITLE }}'/'zfsnap'/ > $(OUTPUTDIR)/$@
+	cat $< >> $(OUTPUTDIR)/$@
+	cat $(BASEDIR)/footer.html >> $(OUTPUTDIR)/$@
+
+%.html: $(CONTENTDIR)/%.fragment
+	[ -d $(OUTPUTDIR) ] || mkdir $(OUTPUTDIR)
+	cat $(BASEDIR)/header.html | sed s/'{{ TITLE }}'/'$* - zfsnap'/ > $(OUTPUTDIR)/$@
+	cat $< >> $(OUTPUTDIR)/$@
+	cat $(BASEDIR)/footer.html >> $(OUTPUTDIR)/$@
 
 help:
 	@echo 'Makefile for zfsnap website                                            '
@@ -16,25 +31,18 @@ help:
 	@echo '   make publish                     copy output/ to master branch      '
 	@echo '                                                                       '
 
-all: html manpage
-	@echo "All ..."
+all: static html manpage
 
 clean:
 	@echo "Cleaning ..."
 	[ ! -d $(OUTPUTDIR) ] || find $(OUTPUTDIR) -mindepth 1 -delete
 
-html:
-	@echo "Generating html ..."
+html: $(HTMLS)
+
+static:
+	@echo "Copying static files ..."
 	[ -d $(OUTPUTDIR) ] || mkdir $(OUTPUTDIR)
-
 	cp -vR $(STATICDIR)/* $(OUTPUTDIR)
-
-	for f in $(FRAGMENTS); do \
-		FILE_NAME=$${f##*/} ;\
-		TITLE="$${FILE_NAME%.fragment} - zfsnap" ;\
-		[ "$${FILE_NAME%.fragment}" != 'index' ] || TITLE="zfsnap" ;\
-		./build_html "$$f" "$$TITLE"  > $(OUTPUTDIR)/$${FILE_NAME%.fragment}.html ;\
-	done
 
 # mandoc is required to convert the manpage to html
 # groff's output is truly terrible and outright unreadable
@@ -48,6 +56,8 @@ manpage: mandoc_check
 	@echo "Generating manpage ..."
 	@echo "Make sure your ../zfsnap repo is updated, to have the latest manpage."
 	@echo "./zfsnap.8 is a symlink. If you're having problems, start there."
+	[ -d $(OUTPUTDIR)/css ] || mkdir -p $(OUTPUTDIR)
+
 	mandoc -Txhtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html
 	# default mandoc CSS
 	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css
@@ -59,4 +69,4 @@ publish: all
 	git commit -m "Website update"
 	git checkout site-code
 
-.PHONY: all clean help html mandoc_check manpage publish
+.PHONY: all clean help html mandoc_check manpage publish static
