@@ -21,10 +21,11 @@
 <h3>Two Server Tango</h3>
 <p>Here, two servers are used: a file server and a backup server. Snapshots
    are created recursively on <code>pool/fs</code> on the file server. They are
-   then sent to the backup server (currently done manually. A zfsnap solution
-   to this is in development) where snapshot are allowed to expire normally.
-   On the file server, all snapshots older than 3 days are destroyed (keeping
-   a few recent snapshots local makes short-term file recovery quick and easy).
+   then sent to the backup server where they are allowed to expire normally
+   (currently, snapshots are sent manually, but a zfsnap solution is in
+   development). On the file server, all snapshots older than 3 days are
+   destroyed (keeping a few recent snapshots locally makes short-term file
+   recovery quick and easy).
 <pre><code>   # two server tango
    backup@filenode:~# zfsnap snapshot -rv -a 13m pool/fs
    # zfs send [etc] | ssh backup@backupnode zfs receive [etc]

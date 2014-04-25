@@ -3,10 +3,10 @@
    of easily creating, managing, and deleting rolling ZFS snapshots.</p>
 
 <h2>Why zfsnap?</h2>
-<p>There certainly is no shortage of scripts available which attempt to tackle
-   the problem of rolling ZFS snapshots &mdash; with varied success. zfsnap
-   aims to provide a simple, focused solution to the problem. No databases,
-   embedded ZFS properties, or dependency-heavy scripting languages.</p>
+<p>There certainly is no shortage of scripts available which attempt &mdash;
+   with varied success &mdash; to tackle the problem of rolling ZFS snapshots.
+   zfsnap aims to provide a simple, focused solution to the problem. No
+   databases, embedded ZFS properties, or dependency-heavy scripting languages.</p>
 <p>Scripts are written with flexibility in mind, so they can be adapted to a
    wide variety of situations. Core functionality is split into functions in a
    core library so that, if the need arises, others may easily work with
@@ -21,12 +21,12 @@
   <dt>Example:</dt>
     <dd><pre><code>jackknife/home@weekly-2014-04-17_11.01.00--6w</code></pre></dd>
 </dl>
-<p>The prefix is optional (but is quite useful for filtering), Timestamp is the
-   date and time it was created, and the TTL is the length of time until a
-   snapshot is marked for deletion. For more info on the TTL format, see the
-   <a href='zfsnap_manpage.html#x54544c2053594e544158'>zfsnap manpage</a>.</p>
+<p>The prefix is optional (but is quite useful for filtering); the Timestamp is
+   the date and time the snapshot was created; and the TTL is the length of
+   time until a snapshot is marked for deletion. For more info on the TTL
+   format, see the <a href='zfsnap_manpage.html#x54544c2053594e544158'>zfsnap
+   manpage</a>.</p>
 
 <h2>Is it open source?</h2>
-<p>zfsnap is distributed under the BSD-3-Clause open source license, and is
+<p>zfsnap is distributed under the BSD-3-Clause open source license and is
    developed on <a href="https://github.com/zfsnap/zfsnap">GitHub</a>.</p>
-
