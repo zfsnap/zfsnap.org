@@ -49,8 +49,6 @@ static:
 
 # mandoc is required to convert the manpage to html
 # groff's output is truly terrible and outright unreadable
-# Unfortunately, mandoc is not available for Debian. :-/
-# Thus, this is FreeBSD-specific for the time-being
 mandoc_check:
 	@echo "Checking for mandoc ..."
 	@[ `which mandoc` ] || echo "Mandoc required! Bailing."
@@ -63,7 +61,7 @@ manpage: mandoc_check
 
 	mandoc -Txhtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html
 	# default mandoc CSS
-	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css
+	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css || cp -v /usr/share/doc/mandoc/example.style.css $(OUTPUTDIR)/css/manpage.css
 
 publish: all
 	git checkout master
