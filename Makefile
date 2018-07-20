@@ -31,7 +31,6 @@ help:
 	@echo '   make clean                       remove the generated files         '
 	@echo '   make html                        (re)generate the web site          '
 	@echo '   make manpage                     generate html from manpage         '
-	@echo '   make publish                     copy output/ to master branch      '
 	@echo '                                                                       '
 
 all: static html manpage
@@ -63,11 +62,4 @@ manpage: mandoc_check
 	# default mandoc CSS
 	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css || cp -v /usr/share/doc/mandoc/example.style.css $(OUTPUTDIR)/css/manpage.css
 
-publish: all
-	git checkout master
-	git add $(OUTPUTDIR)/*
-	for FILE in `find $(OUTPUTDIR)/ -type f`; do git mv -fkv $${FILE} $${FILE#$(OUTPUTDIR)/} ; done
-	git commit -m "Website update"
-	git checkout site-code
-
-.PHONY: all clean help html mandoc_check manpage publish static
+.PHONY: all clean help html mandoc_check manpage static

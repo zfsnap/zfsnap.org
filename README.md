@@ -13,16 +13,12 @@ page's HTML.
 Patches are always welcome.
 
 # How to use
-
 Pages are located in the "content/" folder and should be named
 <page_name>.fragment.
 
 Everything in "static/" is copied directly to the generated site.
 
 See `make help` for available building options.
-
-To `make publish`, be sure to have both the "master" and "site-code" branches
-checked out. 
 
 # Building the manpage HTML
 
@@ -34,4 +30,3 @@ use a more common/portable solution, but `groff`'s output is truly terrible.
 The manpage in this repository is a symlink to ../zfsnap/man/man8/zfsnap.8
 It's suboptimal, but I found it to be better than including the entire zfsnap
 repo as a submodule.
-
