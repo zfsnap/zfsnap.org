@@ -46,20 +46,14 @@ static:
 	[ -d $(OUTPUTDIR) ] || mkdir $(OUTPUTDIR)
 	cp -vR $(STATICDIR)/* $(OUTPUTDIR)
 
-# mandoc is required to convert the manpage to html
-# groff's output is truly terrible and outright unreadable
-mandoc_check:
-	@echo "Checking for mandoc ..."
-	@[ `which mandoc` ] || echo "Mandoc required! Bailing."
-
-manpage: mandoc_check
+manpage:
 	@echo "Generating manpage ..."
 	@echo "Make sure your ../zfsnap repo is updated, to have the latest manpage."
 	@echo "./zfsnap.8 is a symlink. If you're having problems, start there."
-	[ -d $(OUTPUTDIR)/css ] || mkdir -p $(OUTPUTDIR)
+	[ -d $(OUTPUTDIR)/css ] || mkdir -p $(OUTPUTDIR)/css
 
-	mandoc -Txhtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html
+	mandoc -Thtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html || usr/bin/mandoc -Thtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html
 	# default mandoc CSS
-	cp -v /usr/share/mdocml/style.css $(OUTPUTDIR)/css/manpage.css || cp -v /usr/share/doc/mandoc/example.style.css $(OUTPUTDIR)/css/manpage.css
+	wget http://mandoc.bsd.lv/cgi-bin/cvsweb/~checkout~/mandoc.css -O $(OUTPUTDIR)/css/manpage.css
 
 .PHONY: all clean help html mandoc_check manpage static

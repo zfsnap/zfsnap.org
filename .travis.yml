@@ -1,13 +1,14 @@
-cache:
-- apt
 env:
   global:
   - secure: C8qyEj/zf/IEhv729QSemT6ODfoz+ZnIEGgU81obUz60OJn+3gYLbr8aHDnjaZ4RVarQswQDhZoKJaNjBpV/niZQSz4ZOPiBM1FFQ91j7aFR2BGt6ATnvW6pUqwhNr1x29mTVvL1p9dzsij7wzq3wH3hv1KmShFCNJ4U+jd7XV8=
 addons:
   apt:
     packages:
-    - mandoc
+    - debian-archive-keyring
 script:
+# workaround a lack of mandoc in Trusty
+- wget http://snapshot.debian.org/archive/debian/20170918T214131Z/pool/main/m/mdocml/mandoc_1.14.3-3_amd64.deb
+- dpkg -x mandoc_1.14.3-3_amd64.deb .
 - make clean
 - make all
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash travis_deploy.sh; fi
