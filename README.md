@@ -1,5 +1,7 @@
 # zfsnap website
 
+[![Travis tests status](https://secure.travis-ci.org/zfsnap/zfsnap.org.png?branch=master)](https://travis-ci.org/zfsnap/zfsnap.org)
+
 This is the repository to generate the zfsnap website. The code and docs are
 kept in the "site-code" branch. The html generated is copied and committed to
 the master branch. Any static content in the master branch is graciously hosted

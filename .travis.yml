@@ -1,0 +1,13 @@
+cache:
+- apt
+env:
+  global:
+  - secure: C8qyEj/zf/IEhv729QSemT6ODfoz+ZnIEGgU81obUz60OJn+3gYLbr8aHDnjaZ4RVarQswQDhZoKJaNjBpV/niZQSz4ZOPiBM1FFQ91j7aFR2BGt6ATnvW6pUqwhNr1x29mTVvL1p9dzsij7wzq3wH3hv1KmShFCNJ4U+jd7XV8=
+addons:
+  apt:
+    packages:
+    - mandoc
+script:
+- make clean
+- make all
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash travis_deploy.sh; fi
