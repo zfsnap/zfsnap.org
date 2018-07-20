@@ -38,12 +38,13 @@
    but are rare.</p>
 <p>Thankfully, ZFS is relatively modern (it was first introduced in Solaris 10),
    so the shells supported are comparatively featureful and complete.</p>
-<p>OS checks are frowned upon; please keep the code platform agnostic.</p>
+<p>OS checks are frowned upon; please keep the code as platform agnostic as
+   possible.</p>
 
 <h3>Performance</h3>
 <p>As a rule, avoid calling external programs (date, grep, sed, etc). Adding a
-   call or two per run isn't a problem, but adding even <em>one</em> call per
-   snapshot checked can easily cause major slowdowns. Remember, zfsnap runs on
+   call or two per run isn't a problem, but adding a call that will execute for
+   every snapshot checked will cause major slowdowns. Remember, zfsnap runs on
    systems with 100,000+ snapshots to check. sh's substring support is powerful
    enough that sed and grep are rarely (if ever) needed in our use-case.</p>
 <p>Also avoid spawning subshells, which are almost as bad as calling external
@@ -62,7 +63,6 @@
 <p>The book "Beginning Portable Shell Scripting From Novice to Professional" is
    also a great reference, and has proven to be invaluable at times. It focuses
    on portability across Bourne and Bourne-like shells.</p>
-
 </div><!-- close #main -->
 
 <div id='footer'>
