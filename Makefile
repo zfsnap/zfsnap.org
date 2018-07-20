@@ -48,12 +48,12 @@ static:
 
 manpage:
 	@echo "Generating manpage ..."
-	@echo "Make sure your ../zfsnap repo is updated, to have the latest manpage."
-	@echo "./zfsnap.8 is a symlink. If you're having problems, start there."
 	[ -d $(OUTPUTDIR)/css ] || mkdir -p $(OUTPUTDIR)/css
-
+	# download latest zfsnap manpage
+	wget https://raw.githubusercontent.com/zfsnap/zfsnap/master/man/man8/zfsnap.8 -O zfsnap.8
+	# convent to html5
 	mandoc -Thtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html || usr/bin/mandoc -Thtml -Ostyle=/css/manpage.css zfsnap.8 > $(OUTPUTDIR)/zfsnap_manpage.html
-	# default mandoc CSS
+	# get default mandoc CSS
 	wget http://mandoc.bsd.lv/cgi-bin/cvsweb/~checkout~/mandoc.css -O $(OUTPUTDIR)/css/manpage.css
 
 .PHONY: all clean help html mandoc_check manpage static
